@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Date;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
