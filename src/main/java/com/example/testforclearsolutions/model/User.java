@@ -3,18 +3,13 @@ package com.example.testforclearsolutions.model;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Past;
 
+import java.time.LocalDate;
 import java.util.*;
-
 import jakarta.persistence.*;
-import org.intellij.lang.annotations.Pattern;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Date;
 
 @Entity
-@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,55 +23,21 @@ public class User {
     private String lastName;
 
     @Past
-    private Date birthDate;
+    private LocalDate birthDate;
 
     private String address;
 
-    public static class Builder {
-        private String email;
-        private String firstName;
-        private String lastName;
-        private Date birthDate;
-        private String address;
-
-        public Builder email(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public Builder firstName(String firstName) {
-            this.firstName = firstName;
-            return this;
-        }
-
-        public Builder lastName(String lastName) {
-            this.lastName = lastName;
-            return this;
-        }
-
-        public Builder birthDate(Date birthDate) {
-            this.birthDate = birthDate;
-            return this;
-        }
-
-        public Builder address(String address) {
-            this.address = address;
-            return this;
-        }
-
-        public User build() {
-            User user = new User();
-            user.email = this.email;
-            user.firstName = this.firstName;
-            user.lastName = this.lastName;
-            user.birthDate = this.birthDate;
-            user.address = this.address;
-            return user;
-        }
+    public User(Long id, String email, String firstName, String lastName, LocalDate birthDate, String address)   {
+        this.id = id;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.address = address;
     }
 
-    public static Builder builder() {
-        return new Builder();
+    public User() {
+
     }
 
     public Long getId() {
@@ -111,11 +72,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
